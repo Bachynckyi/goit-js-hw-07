@@ -29,14 +29,12 @@ function createImageGallery(galleryItems) {
 };
 
 function onImageClick(event) {
-    event.preventDefault();
-    const isImageSwatchElement = event.target.classList.contains("gallery__image");
-
-    if (!isImageSwatchElement) {
-        return;
-    }
-    const galleryItems = event.target;
-    const galleryBigImage = galleryItems.dataset.source;;
+  event.preventDefault();
+  const { target } = event;
+  if (target.nodeName !== 'IMG') {
+    return;
+  }
+    const galleryBigImage = target.dataset.source;;
     let instance = basicLightbox.create(`
 		<img width="800" height="600" src="${galleryBigImage}">
 	`,
